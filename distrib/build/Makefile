@@ -174,6 +174,8 @@ rebuild: clean predownload build
 media:
 	@echo -e "\nMaking ISO image with linux$(KERNEL_TYPE)..."; sleep 1
 	@+env -i $(CUSTOM_ENV) /bin/bash --noprofile --norc toolcrib/as_chroot "$(CUSTOM_ENV) /bin/bash -l -c /build/toolcrib/make_media"
+
+mediaflash:
 	@echo -e "\nMaking FLASH content..."; sleep 1
 	@+sudo su -c "toolcrib/make_flash"
 

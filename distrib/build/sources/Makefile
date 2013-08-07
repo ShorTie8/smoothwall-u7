@@ -5,13 +5,13 @@
 # This code is distributed under the terms of the GPL v2.
 
 PRODUCT_NAME = Express
-PRODUCT_VERSION = 3.1
+PRODUCT_VERSION = 3.999
 UI_VERSION = 3.1
 
 PRODUCT_EXTRA =
 
-BASENAME = $(PRODUCT_NAME)-$(PRODUCT_VERSION)-rc3
-REVISION = polar-rc3
+BASENAME = $(PRODUCT_NAME)-$(PRODUCT_VERSION)-next
+REVISION = polar-next
 
 
 # - NAME, VERSION and UI_VERSION: meaning should be fairly obvious

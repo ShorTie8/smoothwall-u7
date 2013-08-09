@@ -130,7 +130,7 @@ fi
       build dejagnu
       build gettext
       JOBS=$JOBS_UP
-      build net-tools
+      #build net-tools
       JOBS=$JOBS_MP
       build inetutils
       build libxml2

@@ -195,6 +195,7 @@ fi
       build openldap
       build wget
       build sudo
+      build bc
       build linux
       build iptables
       build ipset

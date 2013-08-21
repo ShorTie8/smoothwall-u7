@@ -1,0 +1,8 @@
+--- ./usr/klibc/Kbuild.orig	2011-08-22 22:16:56.000000000 +0200
++++ ./usr/klibc/Kbuild	2012-04-27 10:03:04.000000000 +0200
+@@ -178,4 +178,4 @@
+ 	$(Q)$(install-lib) $(obj)/klibc-$(SOLIBHASH).so \
+ 	                      $(INSTALLROOT)$(INSTALLDIR)/$(KLIBCCROSS)lib
+ 	$(Q)$(install-lib) $(obj)/klibc-$(SOLIBHASH).so \
+-	                      $(INSTALLROOT)$(SHLIBDIR)
++	                      $(INSTALLROOT)$(INSTALLDIR)/$(SHLIBDIR)

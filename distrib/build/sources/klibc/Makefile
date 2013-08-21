@@ -4,17 +4,24 @@
 #
 # This code is distributed under the terms of the GPL v2.
 
+#VERBOSE = V=1 
+
 include ../Makefile
 include ../Makefile.conf
 include ../Makefile.versions
 
 PACKAGE = klibc
 VER_MM = 2.0
-VERSION = $(VER_MM).1
+VERSION = $(VER_MM).2
 
 EXTENSION = .tar.bz2
 
 BASE_URL = http://www.kernel.org/pub/linux/libs/klibc/$(VER_MM)/
+
+export NO_CHECK_CERT=yes
+
+PATCH_FILE1 = klibc-install-Kbuild.install.patch
+PATCH_FILE2 = klibc-install-Kbuild.patch
 
 DOWNLOAD = yes
 download:
@@ -27,19 +34,28 @@ configure: patch
 COMPILE = yes
 
 compile: configure
-	cd ../linux$(KERNEL_TYPE)/linux-$(KERNEL_VER); if [ ! -h include/asm ]; then \
-	  ln -s ../arch/x86/include/asm include/asm; fi; \
-	  cp arch/x86/include/generated/asm/* arch/x86/include/asm/
 	cd $(DIR); \
-	  make mrproper; \
-	  ln -sf ../../linux$(KERNEL_TYPE)/linux-$(KERNEL_VER) linux; \
-	  make $(JOBS)
+	  ln -sf /usr linux; \
+	  make $(JOBS) all
+	  #ln -sf /usr usr/linux; \
+	  #ln -sf ../../linux/linux/include linux; \
+
+#	cd ../linux$(KERNEL_TYPE)/linux-$(KERNEL_VER); if [ ! -h include/asm ]; then \
+#	  ln -s ../arch/x86/include/asm include/asm; fi; \
+#	  cp arch/x86/include/generated/uapi/asm/* arch/x86/include/asm/
+#	cd $(DIR); \
+#	  make mrproper; \
+#	  ln -sf ../../linux$(KERNEL_TYPE)/linux-$(KERNEL_VER) linux; \
+#	  make $(JOBS)
 
 INSTALL = yes
 install: compile
 	@mkdir -p $(PKG_ROOT)
 	cd $(DIR); \
-	  make prefix=$(PKG_ROOT)$(PKG_DIR) install
+	  sed -i -e '^install: all$/install:/' Makefile; \
+	  make $(VERBOSE) \
+	       INSTALLROOT=$(PKG_ROOT) install
+	       #KLIBCKERNELSRC=/usr \
 
 CLEAN = yes
 clean:
@@ -47,6 +63,7 @@ clean:
 	@rm -rf $(DIR)
 	@rm -rf $(COMPILE_DIR)
 	@rm -rf linux-$(KLIBKERNVER)
+	@rm -rf linux
 ifeq ($(BUILD_PHASE), Final)
 	@rm -rf $(PKG_ROOT)
 	@rm -f $(TARGET_DIR)/smoothwall-$(PACKAGE).tar.gz

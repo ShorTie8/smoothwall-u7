@@ -47,12 +47,14 @@ INST_PKGS = glibc libsmooth+setup libgcc freetype libpng libdnet \
 	    iproute2 gd expat ethtool listtables inotify-tools bridge-utils \
 	    beep2 pcre trafficstats iftop setuids ppp isdn4k-utils rp-pppoe \
 	    ibod dhcpcd eciadsl-synch_bin eciadsl-usermode dhcp snort \
-	    oinkmaster openswan wireless_tools imspector diffutils clamav \
+	    oinkmaster wireless_tools imspector diffutils clamav \
 	    p3scan siproxd which miniupnpd ez-ipupdate noip cdrtools \
 	    suricata smartmontools at dosfstools e2fsprogs grub linux-atm \
 	    mtools nano reiserfsprogs parted xtables-addons cpio dialog \
 	    $(UDEV) lm_sensors xz pcmciautils qemu sysfsutils \
 	    coretree $(ADV_PKGS) device-ids
+# Broken pkgs must be fixed. But anon.
+BROKEN_PKGS = openswan
 
 # INST_PKGS notes.
 # 'coretree' *MUST* be third-last.

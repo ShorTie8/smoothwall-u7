@@ -321,7 +321,7 @@ fi
       build dhcp
       build snort
       build oinkmaster
-      build openswan
+      #build openswan
       build wireless_tools
 
       build noip

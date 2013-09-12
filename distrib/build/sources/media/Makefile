@@ -38,7 +38,7 @@ INST_PKGS = glibc libsmooth+setup libgcc freetype libpng libdnet \
 	    libosip2 libpcap pango zlib slang pixman libxml2 libusb \
 	    kmod gmp mpfr mpc popt yaml perl-mods libcap-ng rsync \
 	    newt binutils coreutils iana-etc mktemp file findutils gawk \
-	    ncurses vim less sed flex gettext net-tools inetutils iputils \
+	    ncurses vim less sed flex gettext inetutils iputils \
 	    whois perl bash bzip2 kbd e2fsprogs grep gzip module-init-tools \
 	    procinfo-ng procps-ng psmisc shadow sysklogd logrotate sysvinit tar \
 	    util-linux joe wget iptables ipset ipbatch pciutils usbutils \

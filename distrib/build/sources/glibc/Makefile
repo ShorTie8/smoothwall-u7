@@ -13,6 +13,12 @@ EXTENSION = .tar.bz2
 
 BASE_URL = ftp://ftp.gnu.org/gnu/glibc
 
+TZ_VERSION = 2014e
+TZCODE_TARBALL = tzcode$(TZ_VERSION).tar.gz
+TZDATA_TARBALL = tzdata$(TZ_VERSION).tar.gz
+TZCODE_URL =  http://www.iana.org/time-zones/repository/releases/$(TZCODE_TARBALL)
+TZDATA_URL =  http://www.iana.org/time-zones/repository/releases/$(TZDATA_TARBALL)
+
 PATCH_FILE1 = generic-sscanf.diff
 PATCH_FILE2 = dash-fix.patch
 
@@ -40,12 +46,12 @@ BUILDTARBALL = yes
 download:
 	$(DL_CMD) $(BASE_URL)/glibc-$(VERSION)$(EXTENSION)
 	$(DL_CMD) $(BASE_URL)/glibc-linuxthreads-$(VERSION)$(EXTENSION)
-	$(DL_CMD) ftp://munnari.oz.au/pub/tzdata*.tar.gz
+	$(DL_CMD) $(TZDATA_URL)
 
 $(DIR)/: download
 	tar -jxvf $(DOWNLOADS_DIR)/$(DIR)$(EXTENSION)
 	tar -jxvf $(DOWNLOADS_DIR)/glibc-linuxthreads-$(VERSION)$(EXTENSION) -C $(DIR)
-	tar -zxvf `ls $(DOWNLOADS_DIR)/tzdata*.tar.gz` -C $(DIR)/timezone/
+	mkdir $(DIR)/timezone/subdir_lib
 
 install: compile
 ifndef BUILDENV

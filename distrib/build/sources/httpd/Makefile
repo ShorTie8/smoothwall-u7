@@ -7,11 +7,11 @@
 include ../Makefile.conf
 
 PACKAGE = httpd
-VERSION = 2.2.22
+VERSION = 2.2.27
 
 LICENCE_FILE = $(DIR)/COPYING
 
-BASE_URL = http://mirrors.enquira.co.uk/apache//httpd/
+BASE_URL = http://archive.apache.org/dist/httpd/
 
 CONFIG_OPTS = --enable-ssl --with-ssl=/usr/ssl \
 	--with-included-apr --enable-mods-shared=all --enable-layout=RedHat

@@ -1,0 +1,139 @@
+--- snort-2.9.6.2/etc/snort.conf	2014-07-10 19:20:56.000000000 +0100
++++ snort.conf	2014-07-19 05:55:59.050864800 +0100
+@@ -42,13 +42,16 @@
+ ###################################################
+ 
+ # Setup the network addresses you are protecting
+-ipvar HOME_NET any
++## SWE ## Smoothwall maintains HOME_NET and DNS_SERVERS in /etc/snort/vars
++include /etc/snort/vars
++# ipvar HOME_NET any
+ 
+ # Set up the external network addresses. Leave as "any" in most situations
+ ipvar EXTERNAL_NET any
+ 
+ # List of DNS servers on your network 
+-ipvar DNS_SERVERS $HOME_NET
++## SWE ## Smoothwall maintains HOME_NET and DNS_SERVERS in /etc/snort/vars
++# ipvar DNS_SERVERS $HOME_NET
+ 
+ # List of SMTP servers on your network
+ ipvar SMTP_SERVERS $HOME_NET
+@@ -81,7 +84,8 @@
+ portvar ORACLE_PORTS 1024:
+ 
+ # List of ports you want to look for SSH connections on:
+-portvar SSH_PORTS 22
++## SWE ## Smoothwall uses port 222 for ssh so watch it and 22
++portvar SSH_PORTS [22,222]
+ 
+ # List of ports you run ftp servers on
+ portvar FTP_PORTS [21,2100,3535]
+@@ -101,13 +105,20 @@
+ # Path to your rules files (this can be a relative path)
+ # Note for Windows users:  You are advised to make this an absolute path,
+ # such as:  c:\snort\rules
+-var RULE_PATH ../rules
+-var SO_RULE_PATH ../so_rules
+-var PREPROC_RULE_PATH ../preproc_rules
++## SWE ## Snort is based in /var/smoothwall/snort so base rule path vars from there
++var SNORT_HOME /var/smoothwall/snort
++var RULE_PATH $SNORT_HOME/rules
++var SO_RULE_PATH $SNORT_HOME/so_rules
++var PREPROC_RULE_PATH $SNORT_HOME/preproc_rules
+ 
+ # If you are using reputation preprocessor set these
+-var WHITE_LIST_PATH ../rules
+-var BLACK_LIST_PATH ../rules
++# Currently there is a bug with relative paths, they are relative to where snort is
++# not relative to snort.conf like the above variables
++# This is completely inconsistent with how other vars work, BUG 89986
++# Set the absolute path appropriately
++## SWE ## Smoothwall stores these in $SNORT_HOME/reputation_lists
++var WHITE_LIST_PATH $SNORT_HOME/reputation_lists
++var BLACK_LIST_PATH $SNORT_HOME/reputation_lists
+ 
+ ###################################################
+ # Step #2: Configure the decoder.  For more information, see README.decode
+@@ -240,13 +251,17 @@
+ ###################################################
+ 
+ # path to dynamic preprocessor libraries
+-dynamicpreprocessor directory /usr/local/lib/snort_dynamicpreprocessor/
++## SWE ## Smoothwall places these in /usr/lib instead of /usr/local/lib
++dynamicpreprocessor directory /usr/lib/snort_dynamicpreprocessor
+ 
+ # path to base preprocessor engine
+-dynamicengine /usr/local/lib/snort_dynamicengine/libsf_engine.so
++## SWE ## Smoothwall places these in /usr/lib instead of /usr/local/lib
++dynamicengine /usr/lib/snort_dynamicengine/libsf_engine.so
+ 
+ # path to dynamic rules libraries
+-dynamicdetection directory /usr/local/lib/snort_dynamicrules
++## SWE ## Smoothwall places these in /usr/lib instead of /usr/local/lib
++## SWE ## This controls if the SO rules are loaded or not
++#dynamicdetection directory /usr/lib/snort_dynamicrules
+ 
+ ###################################################
+ # Step #5: Configure preprocessors
+@@ -290,7 +305,8 @@
+ # preprocessor perfmonitor: time 300 file /var/snort/snort.stats pktcnt 10000
+ 
+ # HTTP normalization and anomaly detection.  For more information, see README.http_inspect
+-preprocessor http_inspect: global iis_unicode_map unicode.map 1252 compress_depth 65535 decompress_depth 65535
++## SWE ## Smoothwall places the unicode.map in the $SNORT_HOME directory
++preprocessor http_inspect: global iis_unicode_map /var/smoothwall/snort/unicode.map 1252 compress_depth 65535 decompress_depth 65535
+ preprocessor http_inspect_server: server default \
+     http_methods { GET POST PUT SEARCH MKCOL COPY MOVE LOCK UNLOCK NOTIFY POLL BCOPY BDELETE BMOVE LINK UNLINK OPTIONS HEAD DELETE TRACE TRACK CONNECT SOURCE SUBSCRIBE UNSUBSCRIBE PROPFIND PROPPATCH BPROPFIND BPROPPATCH RPC_CONNECT PROXY_SUCCESS BITS_POST CCM_POST SMS_POST RPC_IN_DATA RPC_OUT_DATA RPC_ECHO_DATA } \
+     chunk_length 500000 \
+@@ -417,7 +433,8 @@
+ # preprocessor arpspoof_detect_host: 192.168.40.1 f0:0f:00:f0:0f:00
+ 
+ # SSH anomaly detection.  For more information, see README.ssh
+-preprocessor ssh: server_ports { 22 } \
++## SWE ## Smoothwall uses port 222 for ssh so watch it and 22
++preprocessor ssh: server_ports { 22 222 } \
+                   autodetect \
+                   max_client_bytes 19600 \
+                   max_encrypted_packets 20 \
+@@ -503,8 +520,8 @@
+    memcap 500, \
+    priority whitelist, \
+    nested_ip inner, \
+-   whitelist $WHITE_LIST_PATH/white_list.rules, \
+-   blacklist $BLACK_LIST_PATH/black_list.rules 
++   whitelist $WHITE_LIST_PATH/white.list, \
++   blacklist $BLACK_LIST_PATH/black.list 
+ 
+ ###################################################
+ # Step #6: Configure output plugins
+@@ -526,8 +543,9 @@
+ # output log_tcpdump: tcpdump.log
+ 
+ # metadata reference data.  do not modify these lines
+-include classification.config
+-include reference.config
++## SWE ## Smoothwall stores these in the $SNORT_HOME directory
++include /var/smoothwall/snort/classification.config
++include /var/smoothwall/snort/reference.config
+ 
+ 
+ ###################################################
+@@ -662,8 +680,8 @@
+ ###################################################
+ 
+ # decoder and preprocessor event rules
+-# include $PREPROC_RULE_PATH/preprocessor.rules
+-# include $PREPROC_RULE_PATH/decoder.rules
++include $PREPROC_RULE_PATH/preprocessor.rules
++include $PREPROC_RULE_PATH/decoder.rules
+ # include $PREPROC_RULE_PATH/sensitive-data.rules
+ 
+ ###################################################
+@@ -694,4 +712,5 @@
+ # include $SO_RULE_PATH/web-misc.rules
+ 
+ # Event thresholding or suppression commands. See threshold.conf 
+-include threshold.conf
++## SWE ## Smoothwall places threshold.conf in the $SNORT_HOME directory
++include $SNORT_HOME/threshold.conf

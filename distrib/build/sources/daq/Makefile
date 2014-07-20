@@ -7,13 +7,18 @@
 include ../Makefile.conf
 
 PACKAGE = daq
-VERSION = 0.6.2
+VERSION = 2.0.2
 
 BASE_URL = http://www.snort.org/dl/snort-current
 
 DOWNLOAD = yes
 
 download:
-	wget $(BASE_URL)/$(TARBALL)$(EXTENSION) -O $(DOWNLOADS_DIR)/$(TARBALL)$(EXTENSION)
+	@if [ ! -e ../../downloads/$(TARBALL)$(EXTENSION).done ]; then \
+	  wget --no-check-certificate -O ../../downloads/$(TARBALL)$(EXTENSION) $(BASE_URL)$(TARBALL)$(EXTENSION); \
+	  if [ $$? -eq 0 ]; then \
+	    touch ../../downloads/$(TARBALL)$(EXTENSION).done; \
+	  fi; \
+	fi
 
 include ../Makefile.rules

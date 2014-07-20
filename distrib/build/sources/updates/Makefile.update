@@ -10,7 +10,7 @@ all: clean $(OUTPUT_FILENAME) updateinfo
 
 patch.tar.gz:
 	@mkdir distrib
-	@(for I in \
+	+@(for I in \
 		$(UPDATE_PACKAGES) \
 	; do \
 		make -C ../../$$I clean all; \
@@ -51,7 +51,6 @@ $(OUTPUT_FILENAME): patch.tar.gz updateinfo
 
 clean:
 	@rm -rf distrib
-
 	@rm -f patch.tar.gz
 	@rm -f $(OUTPUT_FILENAME)
 	@rm -f updateinfo

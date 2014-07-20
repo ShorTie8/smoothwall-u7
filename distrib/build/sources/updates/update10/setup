@@ -1,0 +1,7 @@
+#!/bin/sh
+
+echo "Update 10 installing."
+
+rm -rf /usr/lib/snort_*
+
+tar -zxvf patch.tar.gz -C /

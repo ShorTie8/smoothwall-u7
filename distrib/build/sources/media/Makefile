@@ -118,6 +118,7 @@ cdrom/smoothwall.tgz:
 		cnxadsl \
 		dhcp \
 		libdnet \
+		libpcap \
 		daq \
 		snort \
 		oinkmaster \

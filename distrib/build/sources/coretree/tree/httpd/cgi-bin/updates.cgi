@@ -41,7 +41,7 @@ if ($uploadsettings{'ACTION'} eq $tr{'upload'})
 {
 	my @list;
 	my $return = &downloadlist();
-	if ($return =~ m/^HTTP\/\d+\.\d+ 200/)
+	if ($return =~ m/^200 OK/)
 	{
 		unless (open(LIST, ">${swroot}/patches/available"))
 		{
@@ -142,7 +142,7 @@ if ($uploadsettings{'ACTION'} eq $tr{'upload'})
 elsif ($uploadsettings{'ACTION'} eq $tr{'refresh update list'})
 {
 	my $return = &downloadlist();
-	if ($return =~ m/^HTTP\/\d+\.\d+ 200/)
+	if ($return =~ m/^200 OK/)
 	{
 		unless(open(LIST, ">${swroot}/patches/available"))
 		{

@@ -8,7 +8,7 @@ use update qw( :standard );
 
 my @this;
 my $return = &downloadlist();
-if ($return =~ m/^HTTP\/\d+\.\d+ 200/) {
+if ($return =~ m/^200 OK/) {
 	unless(open(LIST, ">${swroot}/patches/available")) {
 		die "Could not open available lists database."; }
 	flock LIST, 2;

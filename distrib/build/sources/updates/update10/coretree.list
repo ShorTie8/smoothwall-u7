@@ -1,2 +1,5 @@
 ./etc/snort.conf
 ./etc/threshold.conf
+./httpd/cgi-bin/updates.cgi
+./usr/bin/smoothwall/updatelists.pl
+./usr/lib/smoothwall/update.pm

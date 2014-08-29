@@ -2,4 +2,5 @@
 ./etc/threshold.conf
 ./httpd/cgi-bin/updates.cgi
 ./usr/bin/smoothwall/updatelists.pl
+./usr/bin/smoothwall/machine_reg.pl
 ./usr/lib/smoothwall/update.pm

@@ -9,7 +9,7 @@ include ../Makefile.conf
 PACKAGE = daq
 VERSION = 2.0.2
 
-BASE_URL = http://www.snort.org/dl/snort-current
+BASE_URL = https://www.snort.org/downloads/snort/
 
 DOWNLOAD = yes
 

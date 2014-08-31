@@ -1,3 +1,8 @@
+# If any files need to be moved or should be removed to avoid clobbering
+#   customized files, create bash script 'pre-tar-setup' in the update
+#   dir to perform the work. If it exists, it will be executed just before
+#   the distrib tree is stripped and tarred.
+
 include ../../Makefile
 
 include ../../Makefile.conf
@@ -34,6 +39,10 @@ patch.tar.gz:
 	@(if [ "$(CLAMAV)" != "" ]; then \
 		rm -f distrib/var/clamav/*; \
 	fi;)
+
+	@# Move files as needed; delete files that shouldn't be clobbered
+	@echo "Special file handling, if needed ..."
+	@if [ -e pre-tar-setup ]; then . pre-tar-setup; fi
 
 	@echo "Cleaning tree ..."
 	@/build/striptree distrib/$(UPDATE_DIR)

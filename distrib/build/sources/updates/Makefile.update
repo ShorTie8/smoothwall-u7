@@ -42,7 +42,7 @@ patch.tar.gz:
 
 	@# Move files as needed; delete files that shouldn't be clobbered
 	@echo "Special file handling, if needed ..."
-	@if [ -e pre-tar-setup ]; then . pre-tar-setup; fi
+	@if [ -e pre-tar-setup ]; then . ./pre-tar-setup; fi
 
 	@echo "Cleaning tree ..."
 	@/build/striptree distrib/$(UPDATE_DIR)

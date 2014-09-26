@@ -7,18 +7,18 @@
 include ../Makefile.conf
 
 PACKAGE = bash
-VERSION = 2.05b
+VERSION = 4.1
 
 BASE_URL = ftp://ftp.gnu.org/gnu/bash/
 
-PATCH_FILE1 = bash-2.05b-2.patch
+PATCH_FILE1 = patch01-12.patch
 
 ifeq ($(ARCH), i386)
 BUILD = --build=i386-pc-linux-gnu
 endif
 
 ifndef BUILDENV
-CONFIG_OPTS = --bindir=/bin $(BUILD)
+CONFIG_OPTS = --bindir=/bin $(BUILD) --without-bash-malloc
 endif
 
 ifeq ($(BUILDENV), 1)
@@ -33,6 +33,7 @@ ifndef BUILDENV
 INSTALL = yes
 
 install: compile
+	@mkdir -p ${PKG_ROOT}
 	@make -C $(DIR) DESTDIR=$(PKG_ROOT) install
 	@(cd $(PKG_ROOT)/bin; ln -s bash sh);
 endif

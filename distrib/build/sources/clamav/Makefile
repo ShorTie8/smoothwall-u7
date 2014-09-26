@@ -5,7 +5,8 @@ VERSION = 0.98.4
 
 BASE_URL = http://heanet.dl.sourceforge.net/project/$(PACKAGE)/$(PACKAGE)/$(VERSION)
 
-CONFIG_OPTS = --sysconfdir=/usr/lib/smoothwall --with-dbdir=/var/clamav --disable-clamav --with-openssl=/usr/ssl
+CONFIG_OPTS = --sysconfdir=/usr/lib/smoothwall --with-dbdir=/var/clamav --disable-clamav \
+	      --with-openssl=/usr/ssl --enable-ltdl-install --with-included-ltdl
 
 PATCH_FILE1 = clamav-pidperms.patch
 

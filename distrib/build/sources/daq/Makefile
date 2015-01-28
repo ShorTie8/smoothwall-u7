@@ -7,7 +7,7 @@
 include ../Makefile.conf
 
 PACKAGE = daq
-VERSION = 2.0.2
+VERSION = 2.0.4
 
 BASE_URL = https://www.snort.org/downloads/snort/
 
@@ -15,7 +15,8 @@ DOWNLOAD = yes
 
 download:
 	@if [ ! -e ../../downloads/$(TARBALL)$(EXTENSION).done ]; then \
-	  wget --no-check-certificate -O ../../downloads/$(TARBALL)$(EXTENSION) $(BASE_URL)$(TARBALL)$(EXTENSION); \
+	  wget -O ../../downloads/$(TARBALL)$(EXTENSION) http://downloads.smoothwall.org/buildmirror/$(TARBALL)$(EXTENSION) || \
+		wget --no-check-certificate -O ../../downloads/$(TARBALL)$(EXTENSION) $(BASE_URL)$(TARBALL)$(EXTENSION); \
 	  if [ $$? -eq 0 ]; then \
 	    touch ../../downloads/$(TARBALL)$(EXTENSION).done; \
 	  fi; \

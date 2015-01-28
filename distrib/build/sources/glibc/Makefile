@@ -13,7 +13,7 @@ EXTENSION = .tar.bz2
 
 BASE_URL = ftp://ftp.gnu.org/gnu/glibc
 
-TZ_VERSION = 2014e
+TZ_VERSION = 2014j
 TZCODE_TARBALL = tzcode$(TZ_VERSION).tar.gz
 TZDATA_TARBALL = tzdata$(TZ_VERSION).tar.gz
 TZCODE_URL =  http://www.iana.org/time-zones/repository/releases/$(TZCODE_TARBALL)

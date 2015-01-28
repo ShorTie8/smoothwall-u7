@@ -1,12 +1,11 @@
 include ../Makefile.conf
 
 PACKAGE = clamav
-VERSION = 0.98.4
+VERSION = 0.97.4
 
 BASE_URL = http://heanet.dl.sourceforge.net/project/$(PACKAGE)/$(PACKAGE)/$(VERSION)
 
-CONFIG_OPTS = --sysconfdir=/usr/lib/smoothwall --with-dbdir=/var/clamav --disable-clamav \
-	      --with-openssl=/usr/ssl --enable-ltdl-install --with-included-ltdl
+CONFIG_OPTS = --sysconfdir=/usr/lib/smoothwall --with-dbdir=/var/clamav --disable-clamav
 
 PATCH_FILE1 = clamav-pidperms.patch
 
@@ -14,7 +13,6 @@ INSTALL = yes
 
 install: compile
 	-mkdir $(PKG_ROOT)
-	@mkdir -p ${PKG_ROOT}/var/clamav
 	@make -C $(COMPILE_DIR) DESTDIR=$(PKG_ROOT) install
 	@chown -R 105:105 $(PKG_ROOT)/var/clamav
 	@rm -f $(PKG_ROOT)/usr/lib/smoothwall/clamd.conf

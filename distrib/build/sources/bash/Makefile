@@ -11,7 +11,7 @@ VERSION = 2.05b
 
 BASE_URL = ftp://ftp.gnu.org/gnu/bash/
 
-PATCH_FILE1 = patch01-09.patch
+PATCH_FILE1 = bash-2.05b-13.patch
 
 ifeq ($(ARCH), i386)
 BUILD = --build=i386-pc-linux-gnu

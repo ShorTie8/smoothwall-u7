@@ -7,7 +7,7 @@
 include ../Makefile.conf
 
 PACKAGE = snort
-VERSION = 2.9.6.2
+VERSION = 2.9.7.0
 
 BASE_URL = https://www.snort.org/downloads/snort/
 
@@ -25,7 +25,8 @@ INSTALL = yes
 
 download:
 	@if [ ! -e ../../downloads/$(TARBALL)$(EXTENSION).done ]; then \
-	  wget --no-check-certificate -O ../../downloads/$(TARBALL)$(EXTENSION) $(BASE_URL)$(TARBALL)$(EXTENSION); \
+	  wget -O ../../downloads/$(TARBALL)$(EXTENSION) http://downloads.smoothwall.org/buildmirror/$(TARBALL)$(EXTENSION) || \
+		wget --no-check-certificate -O ../../downloads/$(TARBALL)$(EXTENSION) $(BASE_URL)$(TARBALL)$(EXTENSION); \
 	  if [ $$? -eq 0 ]; then \
 	    touch ../../downloads/$(TARBALL)$(EXTENSION).done; \
 	  fi; \

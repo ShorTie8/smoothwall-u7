@@ -1,6 +1,10 @@
 ./etc/snort.conf
 ./etc/threshold.conf
+./httpd/cgi-bin/ddns.cgi
 ./httpd/cgi-bin/updates.cgi
-./usr/bin/smoothwall/updatelists.pl
+./httpd/cgi-bin/vpn.cgi/vpnconfig.dat
+./usr/lib/smoothwall/header.pm
 ./usr/bin/smoothwall/machine_reg.pl
 ./usr/lib/smoothwall/update.pm
+./usr/bin/smoothwall/updatelists.pl
+./usr/lib/smoothwall/langs/base.pl

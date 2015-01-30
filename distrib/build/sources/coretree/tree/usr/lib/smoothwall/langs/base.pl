@@ -22,6 +22,7 @@
 'invalid secondary dns' => 'Invalid secondary DNS.',
 'invalid username' => 'Invalid username.',
 'invalid password' => 'Invalid password.',
+'invalid comment' => 'Invalid comment.',
 'dhcp server' => 'DHCP server',
 'username' => 'Username:',
 'password' => 'Password:',

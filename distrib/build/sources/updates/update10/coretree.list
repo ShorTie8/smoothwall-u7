@@ -1,7 +1,9 @@
 ./etc/snort.conf
 ./etc/threshold.conf
+./httpd/cgi-bin/changepw.cgi
 ./httpd/cgi-bin/ddns.cgi
 ./httpd/cgi-bin/updates.cgi
+./httpd/cgi-bin/shutdown.cgi
 ./httpd/cgi-bin/vpn.cgi/vpnconfig.dat
 ./usr/lib/smoothwall/header.pm
 ./usr/bin/smoothwall/machine_reg.pl

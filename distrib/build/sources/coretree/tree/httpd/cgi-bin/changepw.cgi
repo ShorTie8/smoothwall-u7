@@ -7,7 +7,7 @@
 # (c) The SmoothWall Team
 
 use lib "/usr/lib/smoothwall";
-use Digest::SHA qw(sha1_hex);
+use Digest::SHA1 qw(sha1_hex);
 use header qw( :standard );
 use smoothtype qw( :standard );
 

@@ -80,6 +80,7 @@ cdrom/smoothwall.tgz:
 		HTML-Parser \
 		HTML-Tagset \
 		URI \
+		Digest-SHA1 \
 		libwww-perl \
 		strace \
 		libart_lgpl \

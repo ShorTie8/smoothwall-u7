@@ -1,4 +1,4 @@
 #! /bin/bash
 
 # 
-rm distrib/etc/threshold.conf
+rm -f distrib/etc/threshold.conf

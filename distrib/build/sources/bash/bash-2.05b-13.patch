@@ -982,3 +982,13 @@ Patch:
   #endif
 + extern char *parser_remaining_input __P((void));
 + 
+--- bash-2.05b/patchlevel.h-ORIG        2015-04-03 13:17:00.206800810 +0100
++++ bash-2.05b/patchlevel.h     2015-04-03 13:17:12.502800820 +0100
+@@ -25,6 +25,6 @@
+    regexp `^#define[   ]*PATCHLEVEL', since that's what support/mkversion.sh
+    looks for to find the patch level (for the sccs version string). */
+
+-#define PATCHLEVEL 0
++#define PATCHLEVEL 13
+
+ #endif /* _PATCHLEVEL_H_ */

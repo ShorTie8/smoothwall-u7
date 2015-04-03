@@ -1,4 +1,4 @@
-UPDATE_PACKAGES = libpcap libdnet zlib openssl bzip2 daq snort httpd bash coretree
+UPDATE_PACKAGES = libpcap libdnet zlib openssl Digest-SHA1 bzip2 daq snort httpd bash coretree
 
 UPDATE_ID = 010
 UPDATE_NAME = update10

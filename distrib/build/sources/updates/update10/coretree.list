@@ -1,5 +1,6 @@
 ./etc/snort.conf
 ./etc/threshold.conf
+./etc/rc.d/rc.sysinit
 ./httpd/cgi-bin/changepw.cgi
 ./httpd/cgi-bin/ddns.cgi
 ./httpd/cgi-bin/updates.cgi

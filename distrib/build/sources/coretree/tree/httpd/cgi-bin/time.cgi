@@ -113,7 +113,7 @@ if ($timesettings{'ACTION'} eq $tr{'save'})
 
 ERROR:
 	if ($errormessage) {
-		$timeettings{'VALID'} = 'no'; }
+		$timesettings{'VALID'} = 'no'; }
 	else {
 		$timesettings{'VALID'} = 'yes'; }
 

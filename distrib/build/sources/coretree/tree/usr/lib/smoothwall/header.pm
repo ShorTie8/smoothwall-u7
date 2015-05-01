@@ -285,8 +285,8 @@ END
 	<td class='logo' rowspan='2'>
 	</td><td class='header'>
 		<p style="font-size:10pt; font-weight:bold; margin:0 0 0 8em; text-decoration:underline">
-			<a href="http://community.smoothwall.org/forum" target="_blank">
-				Smoothwall Express 3.0 Has Reached End-of-Life
+			<a href="http://community.smoothwall.org/forum/viewtopic.php?t=41894" target="_blank">
+				SmoothWall Express 3.0 Has Reached End-of-Life
 			</a>
 		</p>
 

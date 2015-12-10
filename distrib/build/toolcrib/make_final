@@ -131,9 +131,6 @@ fi
       build dejagnu
       build gettext
       build pkg-config
-      JOBS=$JOBS_UP
-      build net-tools
-      JOBS=$JOBS_MP
       build inetutils
       touch crumbs/Final.grp1.compiled
     fi
@@ -173,6 +170,11 @@ fi
       build cairo
       build pango
       build openssl
+      build sqlite
+      build unbound
+      build libevent
+      build nspr
+      build nss
       build neon
       build libosip2
       build libnet
@@ -200,6 +202,7 @@ fi
       build autoconf
       build automake
       build bash
+      build bc
       build file
       build libtool
       build readline
@@ -281,7 +284,6 @@ fi
 
       # daq (and snort) version check depend on cacert-bundle
       build daq
-      build sqlite
       build httpd
       build cron
       JOBS=$JOBS_UP
@@ -331,7 +333,7 @@ fi
       build dhcp
       build snort
       build oinkmaster
-      build openswan
+      build libreswan
       build wireless_tools
 
       build noip

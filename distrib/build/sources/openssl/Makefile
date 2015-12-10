@@ -37,7 +37,7 @@ configure: $(DIR)/
 	  patch < ../Makefile-MANDIR.patch);
 
 compile: configure
-	@$(MAKE) -C $(PACKAGE)-$(VERSION)
+	@$(MAKE) $(JOBS) -C $(PACKAGE)-$(VERSION)
 
 install: compile
 	@mkdir -p $(PKG_ROOT)

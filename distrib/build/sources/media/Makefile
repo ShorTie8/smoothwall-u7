@@ -39,8 +39,8 @@ INST_PKGS = glibc libsmooth+setup libgcc freetype libpng libdnet \
 	    libosip2 libpcap pango zlib slang pixman libxml2 libusb-compat libusb \
 	    kmod gmp mpfr mpc popt yaml perl-mods libcap-ng rsync \
 	    newt binutils coreutils iana-etc mktemp file findutils gawk \
-	    ncurses vim less sed flex gettext net-tools inetutils iputils \
-	    whois perl bash bzip2 kbd e2fsprogs grep gzip module-init-tools \
+	    ncurses vim less sed flex gettext inetutils iputils \
+	    whois perl bash bc bzip2 kbd e2fsprogs grep gzip module-init-tools \
 	    procinfo-ng procps-ng psmisc shadow sysklogd logrotate sysvinit tar \
 	    util-linux joe wget iptables ipset ipbatch pciutils usbutils \
 	    linux$(KERNEL_TYPE) openssl openssh httpd smoothd squid freefont \
@@ -48,7 +48,7 @@ INST_PKGS = glibc libsmooth+setup libgcc freetype libpng libdnet \
 	    iproute2 gd expat ethtool listtables inotify-tools bridge-utils \
 	    beep2 pcre trafficstats iftop setuids ppp isdn4k-utils rp-pppoe \
 	    ibod dhcpcd eciadsl-synch_bin eciadsl-usermode dhcp snort \
-	    oinkmaster openswan wireless_tools imspector diffutils clamav \
+	    oinkmaster libreswan wireless_tools imspector diffutils clamav \
 	    p3scan siproxd which miniupnpd ez-ipupdate noip cdrtools \
 	    suricata smartmontools at dosfstools e2fsprogs grub linux-atm \
 	    mtools nano reiserfsprogs parted xtables-addons cpio dialog \
@@ -221,7 +221,9 @@ endif
 	@echo -e "\nTidying ..."
 	@#rm -f distrib/etc/resolv.conf
 	@find distrib -name .gitignore -exec rm -f {} \;
-	@ln -s /var/smoothwall/vpn/ipsec.conf distrib/etc/ipsec.conf
+	@[ -f distrib/etc/ipsec.conf ] && mv distrib/etc/ipsec.conf distrib/etc/ipsec.conf-DIST
+	@ln -sf /var/smoothwall/vpn/ipsec.conf distrib/etc/ipsec.conf
+	@ln -sf /usr/bin/hostname distrib/bin/hostname
 	@cd distrib; chown -R root:root usr/share/ntop usr/etc/ntop
 	@cd distrib/etc; mkdir -p apcupsd/scripts && chown root:root apcupsd/scripts && chmod 755 apcupsd/scripts
 	@cd distrib/etc; chmod -R g-w,o-w logrotate*

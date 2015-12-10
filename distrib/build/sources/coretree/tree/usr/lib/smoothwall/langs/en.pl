@@ -1180,7 +1180,7 @@
 'smoothinfo-checkall' => 'Check all:',
 'smoothinfo-checkdefault' => 'Check default:',
 'smoothinfo-client-IP' => 'Client-side IP info',
-'smoothinfo-clientIP' => 'Client-side IP info (provided by either \'ifconfig -a\' or \'ipconfig /all\'):',
+'smoothinfo-clientIP' => 'Client-side IP info (provided by either \'ip addr\' or \'ipconfig /all\'):',
 'smoothinfo-clientIP-tip' => 'Paste the info obtained on a client workstation here to include it in the report.',
 'smoothinfo-clientinfo' => 'Provide client IP info',
 'smoothinfo-close' => 'Close',

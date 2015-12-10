@@ -5,13 +5,13 @@
 # This code is distributed under the terms of the GPL v2.
 
 PRODUCT_NAME = Express
-PRODUCT_VERSION = 3.1
+PRODUCT_VERSION = 3.2
 UI_VERSION = 3.1
 
-PRODUCT_EXTRA = -SP2b
+PRODUCT_EXTRA =
 
-BASENAME = $(PRODUCT_NAME)-$(PRODUCT_VERSION)
-REVISION = polar
+BASENAME = $(PRODUCT_NAME)-$(PRODUCT_VERSION)-alef
+REVISION = isbjørn-alef
 
 
 # - NAME, VERSION and UI_VERSION: meaning should be fairly obvious
@@ -22,7 +22,8 @@ REVISION = polar
 #   the initial release.
 # - REVISION: contains the code name for the actual release
 #   (degu, polar, orca, etc.) and indicates pre-release
-#   development progress (-alaph, -beth, -gamal, -rc1, -rc2, etc.)
+#   3.1 development progress (-alaph, -beth, -gamal, -rc1, -rc2, etc.)
+#   3.2 development progress (-alef, -bet, -gimel, dalet, -rc1, -rc2, etc.)
 
 # During development, clear PRODUCT_EXTRA and set BASENAME and
 #   REVISION accordingly.

@@ -28,8 +28,8 @@ COMPILE = yes
 INSTALL = yes
 
 configure: patch
-	@true
-	
+	cp makefile.inc.local $(DIR)/Makefile.inc.local
+
 CFLAGS:=$(CFLAGS) -fno-strict-aliasing
 compile: configure
 	$(MAKE) $(JOBS) -C $(COMPILE_DIR) V=0 KERNELSRC=$(KNL_SRC) WERROR_CFLAGS="" base

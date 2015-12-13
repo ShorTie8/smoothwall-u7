@@ -31,7 +31,7 @@ MAKE_DEFS = BUILD_OPT=1 \
 	    NSS_USE_SYSTEM_SQLITE=1 \
 	    USE_SYSTEM_ZLIB=1 \
 	    ZLIB_LIBS=-lz
-ifeq (BITS_64, yes)
+ifeq ($(BITS_64), yes)
   MAKE_DEFS += USE_64=1
 endif
 

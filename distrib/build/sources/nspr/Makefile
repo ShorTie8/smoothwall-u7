@@ -16,7 +16,7 @@ DIR = $(PACKAGE)-$(VERSION)/nspr
 CONFIG_OPTS = --prefix=$(PKG_DIR) \
 	      --with-mozilla \
 	      --with-pthreads
-ifeq (BITS_64, yes)
+ifeq ($(BITS_64), yes)
   CONFIG_OPTS += --enable-64-bit
 endif
 

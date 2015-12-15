@@ -117,3 +117,6 @@ endif
 ifndef ALL
 all: $(TARGET_DIR)/smoothwall-$(PACKAGE).tar.gz
 endif
+
+print-version:
+	@echo "$(PACKAGE)|$(VERSION)|<a href='$(BASE_URL)' target='_blank'>$(BASE_URL)</a>|$(TARBALL)|$(EXTENSION)"

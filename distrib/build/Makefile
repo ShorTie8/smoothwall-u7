@@ -79,6 +79,8 @@ default:
 	@echo "  reprep-final      Prepare to rebuild final stage *only*."
 	@echo "  package           Clean, archive sources, pre-fetch tarballs, build,"
 	@echo "                    and make media with matching source tarball."
+	@echo "  print-versions    Create crumbs/packageVersions.html to ease finding"
+	@echo "                    newer versions of upstream packages."
 	@echo
 	@echo "Help:"
 	@echo "  help-arch         How to select a different 32-bit ARCH"
@@ -313,6 +315,16 @@ packageinfos.html:
 	fi
 	-$(MAKE) -C sources/modules packageinfos.html
 	@echo "</ul>" >>/tmp/packageinfo.html
+
+# Print all package version/source info
+#
+print-versions:
+	@cd sources; \
+	for I in */; do \
+	  pushd $$I >/dev/null 2>&1; make --no-print-directory print-version || echo "$$I||print-version failed||" ; popd >/dev/null 2>&1; \
+	done | (echo "<table>" ; while read INPUT ; do \
+	  echo "<tr><td>$${INPUT//|/</td><td>}</td></tr>"; \
+	done; echo "</table>") > ../crumbs/packageVersions.html
 
 # Prepare to rebuild the final stage
 reprep-final:

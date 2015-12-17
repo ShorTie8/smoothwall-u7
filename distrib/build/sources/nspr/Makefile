@@ -40,6 +40,5 @@ ifeq ($(BITS_64), yes)
 endif
 	@rm -f $(TARGET_DIR)/smoothwall-$(PACKAGE).tar.gz
 endif
-endif
 
 include ../Makefile.rules

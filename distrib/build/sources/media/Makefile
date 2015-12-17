@@ -18,8 +18,8 @@ else
 endif
 
 # Make it easy to switch between the two
-export UDEV = udev
-export UDEVunused = eudev
+export UDEV = eudev
+export UDEVunused = udev
 
 # Document these pkgs, don't install.
 # Some of these are retirees.
@@ -40,7 +40,7 @@ INST_PKGS = glibc libsmooth+setup libgcc freetype libpng libdnet \
 	    kmod gmp mpfr mpc popt yaml perl-mods libcap-ng rsync \
 	    newt binutils coreutils iana-etc mktemp file findutils gawk \
 	    ncurses vim less sed flex gettext inetutils iputils \
-	    whois perl bash bc bzip2 kbd e2fsprogs grep gzip module-init-tools \
+	    whois perl bash bc bzip2 kbd e2fsprogs grep gzip \
 	    procinfo-ng procps-ng psmisc shadow sysklogd logrotate sysvinit tar \
 	    util-linux joe wget iptables ipset ipbatch pciutils usbutils \
 	    linux$(KERNEL_TYPE) openssl openssh httpd smoothd squid freefont \

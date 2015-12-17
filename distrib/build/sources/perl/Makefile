@@ -7,7 +7,7 @@
 include ../Makefile.conf
 
 PACKAGE = perl
-VERSION = 5.14.4
+VERSION = 5.22.0
 
 BASE_URL = ftp://ftp.cpan.org/pub/CPAN/src/5.0/
 
@@ -17,17 +17,15 @@ ifeq ($(BUILD_PHASE), Stage_3)
 #PATCH_FILE1 = perl-5.14.2-libc-1.patch
 
 # Seems stage 3 perl won't build if it's for i486`
-CONFIG_OPTS = -des -Dprefix=/tools -Dcc=gcc -A ccflags="$${CFLAGS/486/586}"
+CONFIG_OPTS = -des -Dprefix=/tools -Dlibs=-lm -A ccflags="$${CFLAGS/486/586}"
 
 CONFIGURE = yes
 configure: patch
-	@cd $(COMPILE_DIR); sed -i -e 's/gdbm dbm db/dbm/' Configure
-	@cd $(COMPILE_DIR)/hints; sed -i -e '/$libswanted gdbm_compat/d' linux.sh
 	@cd $(COMPILE_DIR); sh Configure $(CONFIG_OPTS)
 
 COMPILE = yes
 compile: configure
-	make $(JOBS) -C $(COMPILE_DIR) # perl utilities ext/Errno/pm_to_blib
+	$(MAKE) $(JOBS) -C $(COMPILE_DIR)
 
 INSTALL = yes
 install: compile

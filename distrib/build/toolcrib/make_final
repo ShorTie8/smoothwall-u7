@@ -45,9 +45,12 @@ fi
 cd /build
 export BUILD_PHASE="Final"
 
+# Should be temporary: ensure {,u}mount are not setuid in /tools.
+/tools/bin/chmod u-s /tools/bin/{,u}mount
+
 # Be sure /proc is mounted
 #
-if grep proc /etc/mtab; then umount /proc >/dev/null 2>&1; fi
+if /tools/bin/grep proc /etc/mtab; then /tools/bin/umount /proc >/dev/null 2>&1; fi
 /tools/bin/mount -t proc proc /proc
 
 # Get our functions
@@ -153,9 +156,11 @@ fi
 
       # udev depends on util-linux and kmod
       build util-linux
+      build e2fsprogs
       build kmod
       # libusb depends on libudev
-      build udev
+      build gperf
+      build eudev
       build libusb
       build libusb-compat
       build cgilib
@@ -210,11 +215,9 @@ fi
       build bzip2
       build diffutils
       build kbd
-      build e2fsprogs
       build grep
       build gzip
       build make
-      build module-init-tools
       build patch
       build procinfo-ng
       build procps-ng
@@ -251,8 +254,6 @@ fi
       build xtables-addons
       build ipbatch
       build klibc
-      build gperf
-      #build eudev
       build linux-atm
       touch crumbs/Final.grp4.compiled
     fi

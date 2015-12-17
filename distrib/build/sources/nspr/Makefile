@@ -17,7 +17,7 @@ CONFIG_OPTS = --prefix=$(PKG_DIR) \
 	      --with-mozilla \
 	      --with-pthreads
 ifeq ($(BITS_64), yes)
-  CONFIG_OPTS += --enable-64-bit
+  CONFIG_OPTS += --enable-64bit
 endif
 
 CONFIGURE = yes

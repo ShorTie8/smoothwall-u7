@@ -11,6 +11,7 @@ VERSION = 22
 
 BASE_URL = http://www.kernel.org/pub/linux/utils/kernel/kmod/
 EXTENSION = .tar.xz
+NO_CHECK_CERT = 1
 
 CONFIG_OPTS = --prefix=/usr          \
               --bindir=/bin          \

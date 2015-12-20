@@ -16,8 +16,10 @@ VERSION = 0.0
 
 # List of all mods to be built. Add here, then add dir and makefile in
 #   version dir below. IO-Socket-SSL seems to depend on Net-SSLeay; both
-#   are moved to the end of the list.
+#   are moved to the end of the list. Module-Build was removed from Perl's
+#   core in 5.22; build it first.
 export PERL_MODS = \
+	    Module-Build \
 	    App-Control \
 	    Authen-NTLM \
 	    Authen-SASL \

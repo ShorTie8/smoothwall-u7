@@ -83,7 +83,7 @@ install: download
 clean:
 	@echo -n " $(PACKAGE)"
 	@rm -rf $(PACKAGE)-$(VERSION)
-	@rm -rf $(DIR)$(DIR)-compile
+	@rm -rf $(DIR) $(DIR)-compile
 	@rm -rf $(PKG_ROOT)
         
 endif

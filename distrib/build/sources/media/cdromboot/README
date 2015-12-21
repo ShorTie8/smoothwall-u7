@@ -1,1 +1,23 @@
-The XPM images for grub's background must be 15 color indexed images.
+The XPM images for grub's background must be 14 color indexed images.
+
+Use GIMP to edit the current background file (e.g., express_boot-3.2.xcf):
+  - remove the transparency channel
+  - change the image's mode to 'indexed', and choose '14' levels
+  - hide the 'protect' layer and merge other layers down
+  - export as xpm, save as express_boot_install.xpm
+  - undo all changes in gimp
+  - hide the 'install' layer and merge other layers down
+  - export as xpm, save as express_boot_protect.xpm
+  - undo all changes in gimp
+  - exit gimp
+  - gzip express_boot_install.xpm and express_boot_protect.xpm
+
+The two images should be ready for grub to use.
+
+
+Use inkscape to edit smoothwall-express-logos-3.2.svg. This file contains
+the vector images for the 'new' Smoothwall Express logos. The 'smoothwall'
+and the 'express' don't exactly match those that Smoothie Towers produced
+(the fonts are slightly different), but I think they're close enough.
+
+In time, the other logos used in Express will be added to the .svg file.

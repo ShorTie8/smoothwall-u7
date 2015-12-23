@@ -191,6 +191,7 @@ fi
       build libnetfilter_cttimeout
       build libnetfilter_log
       build libnetfilter_queue
+      build libnftnl
       JOBS=$JOBS_UP
       build slang
       JOBS=$JOBS_MP

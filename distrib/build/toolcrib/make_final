@@ -182,6 +182,7 @@ fi
       build nss
       build neon
       build libosip2
+      build libmnl
       build libnet
       build libnfnetlink
       build libnetfilter_acct
@@ -246,7 +247,6 @@ fi
       build sysvinit
       build tar
       build joe
-      build libmnl
       build db
       build openldap
       build wget

@@ -6,7 +6,7 @@
 
 include ../Makefile.conf
 
-PACKAGE = libnfnetlink
+PACKAGE = libnetfilter_log
 VERSION = 1.0.1
 EXTENSION = .tar.bz2
 

@@ -6,8 +6,8 @@
 
 include ../Makefile.conf
 
-PACKAGE = libnfnetlink
-VERSION = 1.0.1
+PACKAGE = libnetfilter_cthelper
+VERSION = 1.0.0
 EXTENSION = .tar.bz2
 
 DIR = $(PACKAGE)-$(VERSION)

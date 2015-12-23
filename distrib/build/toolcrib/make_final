@@ -184,6 +184,11 @@ fi
       build libosip2
       build libnet
       build libnfnetlink
+      build libnetfilter_acct
+      build libnetfilter_conntrack
+      build libnetfilter_cthelper
+      build libnetfilter_cttimeout
+      build libnetfilter_log
       build libnetfilter_queue
       JOBS=$JOBS_UP
       build slang

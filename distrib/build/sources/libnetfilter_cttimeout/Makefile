@@ -7,7 +7,7 @@
 include ../Makefile.conf
 
 PACKAGE = libnetfilter_cttimeout
-VERSION = 1.0.1
+VERSION = 1.0.0
 EXTENSION = .tar.bz2
 
 DIR = $(PACKAGE)-$(VERSION)

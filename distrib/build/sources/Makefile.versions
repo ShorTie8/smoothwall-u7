@@ -21,7 +21,7 @@ KERNEL_URL = http://www.kernel.org/pub/linux/kernel/v$(KERNEL_MAJOR).x/linux-$(K
 FREESWAN_TYPE = libreswan
 FREESWAN_VER = 3.15
 
-IPTABLES_VER = 1.4.21
+IPTABLES_VER = 1.6.0
 XTABLES_ADDONS_VER = 2.10
 
 GMP_VER = 5.1.2

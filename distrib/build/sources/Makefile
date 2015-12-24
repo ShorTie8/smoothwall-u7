@@ -11,7 +11,7 @@ UI_VERSION = 3.1
 PRODUCT_EXTRA =
 
 BASENAME = $(PRODUCT_NAME)-$(PRODUCT_VERSION)-alef
-REVISION = isbjørn-alef
+REVISION = ysbeer-alef
 
 
 # - NAME, VERSION and UI_VERSION: meaning should be fairly obvious

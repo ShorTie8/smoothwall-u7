@@ -44,6 +44,10 @@ char *english_tr[] = {
 "Yes",
 /* TR_NO */
 "No",
+/* TR_NOTE */
+"NOTE",
+/* TR_WARNING */
+"WARNING",
 
 /*************/
 /* LIBSMOOTH */
@@ -536,8 +540,6 @@ char *english_tr[] = {
 "Enter the module name and parameters for the driver you require.",
 /* TR_LOADING_MODULE */
 "Loading module...",
-/* TR_WARNING */
-"WARNING",
 /* TR_WARNING_LONG */
 "If you change this IP address, and you are logged in remotely, " \
 "your connection to the Smoothwall Express machine will be broken, and you will " \

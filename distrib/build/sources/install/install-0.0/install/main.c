@@ -88,7 +88,7 @@ int main(int argc, char *argv[])
 	ctr = english_tr;
 	strcpy(shortlangname, "en");
 
-	newtDrawRootText(0, 0, " TITLE " -- http://smoothwall.org/");
+	newtDrawRootText(0, 0, TITLE " -- http://smoothwall.org/");
 	newtPushHelpLine(ctr[TR_HELPLINE]);
 
 	newtWinMessage(ctr[TR_BASIC], ctr[TR_OK], ctr[TR_WELCOME]);

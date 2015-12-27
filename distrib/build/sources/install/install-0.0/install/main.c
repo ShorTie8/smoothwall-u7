@@ -88,10 +88,10 @@ int main(int argc, char *argv[])
 	ctr = english_tr;
 	strcpy(shortlangname, "en");
 
-	newtDrawRootText(0, 0, "Smoothwall " PRODUCT_NAME PRODUCT_EXTRA " (" PRODUCT_ARCH ") -- http://smoothwall.org/");
+	newtDrawRootText(0, 0, " TITLE " -- http://smoothwall.org/");
 	newtPushHelpLine(ctr[TR_HELPLINE]);
 
-	newtWinMessage(TITLE, ctr[TR_OK], ctr[TR_WELCOME]);
+	newtWinMessage(ctr[TR_BASIC], ctr[TR_OK], ctr[TR_WELCOME]);
 	
 	/* Get device letter for the IDE HD.  This has to succeed. */
 	if (!(findharddiskorcdrom(&hd, DISK_HD)))
@@ -121,7 +121,7 @@ int main(int argc, char *argv[])
 			if (!(mysystem(commandstring))) {
 				cdmounted = 1;
 			} else {
-				rc = newtWinChoice(TITLE, ctr[TR_OK], ctr[TR_CANCEL], insertmessage);
+				rc = newtWinChoice(ctr[TR_BASIC], ctr[TR_OK], ctr[TR_CANCEL], insertmessage);
 				if (rc != 1)
 				{
 					errorbox(ctr[TR_INSTALLATION_CANCELED]);
@@ -141,7 +141,7 @@ int main(int argc, char *argv[])
 		goto EXIT;
 	}
 
-	rc = newtWinChoice(TITLE, ctr[TR_OK], ctr[TR_CANCEL],
+	rc = newtWinChoice(ctr[TR_BASIC], ctr[TR_OK], ctr[TR_CANCEL],
 		ctr[TR_PREPARE_HARDDISK], hd.devnode);
 	if (rc != 1)
 		goto EXIT;
@@ -328,7 +328,7 @@ int main(int argc, char *argv[])
 	snprintf(commandstring, STRING_SIZE, 
 		"/bin/tar -C /harddisk -zxvf %s",
 		tarballfilename);
-	if (runcommandwithprogress(45, 4, TITLE, commandstring, tarballFileCount,
+	if (runcommandwithprogress(45, 4, ctr[TR_BASIC], commandstring, tarballFileCount,
 		ctr[TR_INSTALLING_FILES]))
 	{
 		errorbox(ctr[TR_UNABLE_TO_INSTALL_FILES]);
@@ -439,7 +439,7 @@ EXIT:
 	fclose(flog);
 
 	if (!(allok))
-		newtWinMessage(TITLE, ctr[TR_OK], ctr[TR_PRESS_OK_TO_REBOOT]);	
+		newtWinMessage(ctr[TR_BASIC], ctr[TR_OK], ctr[TR_PRESS_OK_TO_REBOOT]);	
 	
 	newtFinished();
 	

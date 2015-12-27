@@ -109,6 +109,8 @@ char *english_tr[] = {
 /***********/
 /* INSTALL */
 /***********/
+/* TR_BASIC */
+"Basic Installer",
 /* TR_WELCOME */
 "Welcome to the Smoothwall Express installation program. Please visit our " \
 "homepage at http://www.smoothwall.org.  Selecting Cancel on any " \
@@ -117,6 +119,8 @@ char *english_tr[] = {
 "No harddisk found.",
 /* TR_SELECT_INSTALLATION_MEDIA */
 "Select installation media",
+/* TR_ENTER_TARBALL_URL */
+"Enter the URL of the install tarball",
 /* TR_SELECT_INSTALLATION_MEDIA_LONG */
 "Smoothwall Express can be installed from multiple sources.  The simplest is to " \
 "use the machines CDROM drive. If the computer lacks a drive, you may " \

@@ -16,8 +16,4 @@ CONFIG_OPTS += --prefix=/usr \
 	       --disable-static \
 	       --with-pidfile=/var/run/unbound.pid
 
-INSTALL = yes
-install: compile
-	cd $(COMPILE_DIR); make install
-
 include ../Makefile.rules

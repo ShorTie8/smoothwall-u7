@@ -9,14 +9,14 @@ include ../Makefile.conf
 PACKAGE = usb-modeswitch
 VERSION = $(shell perl xml2txt.pl release $(PACKAGE))
 PKG_URL = $(shell perl xml2txt.pl target $(PACKAGE))
-$(info VERSION=$(VERSION))
-$(info PKG_URL=$(PKG_URL))
+#$(info VERSION=$(VERSION))
+#$(info PKG_URL=$(PKG_URL))
 
 DATA_PACKAGE = usb-modeswitch-data
 DATA_VERSION = $(shell perl xml2txt.pl release $(DATA_PACKAGE))
 DATA_PKG_URL = $(shell perl xml2txt.pl target $(DATA_PACKAGE))
-$(info DATA_VERSION=$(DATA_VERSION))
-$(info DATA_PKG_URL=$(DATA_PKG_URL))
+#$(info DATA_VERSION=$(DATA_VERSION))
+#$(info DATA_PKG_URL=$(DATA_PKG_URL))
 
 EXTENSION = .tar.bz2
 
@@ -25,10 +25,10 @@ download:
 	@$(PRE_DL) $(DL_CMD) $(PKG_URL) $(MD5)
 	@$(PRE_DL) $(DL_CMD) $(DATA_PKG_URL) $(MD5)
 
-ifndef PREPARE
-$(DATA_PACKAGE)-$(DATA_VERSION)/: download
+PREPARE = yes
+$(PACKAGE)-$(VERSION)/: download
+	tar -xvf $(DOWNLOADS_DIR)/$(PACKAGE)-$(VERSION)$(EXTENSION)
 	tar -xvf $(DOWNLOADS_DIR)/$(DATA_PACKAGE)-$(DATA_VERSION)$(EXTENSION)
-endif
 
 
 CONFIGURE = yes

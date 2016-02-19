@@ -32,8 +32,8 @@ configure: patch
 
 CFLAGS:=$(CFLAGS) -fno-strict-aliasing
 compile: configure
-	$(MAKE) $(JOBS) -C $(COMPILE_DIR) V=0 KERNELSRC=$(KNL_SRC) WERROR_CFLAGS="" base
-	$(MAKE) $(JOBS) -C $(COMPILE_DIR) V=0 KERNELSRC=$(KNL_SRC) WERROR_CFLAGS="" module
+	$(MAKE) $(JOBS) -C $(COMPILE_DIR) V=1 KERNELSRC=$(KNL_SRC) WERROR_CFLAGS="" base
+	$(MAKE) $(JOBS) -C $(COMPILE_DIR) V=1 KERNELSRC=$(KNL_SRC) WERROR_CFLAGS="" module
 
 install: compile
 	mkdir -p $(PKG_ROOT)${PKG_DIR}

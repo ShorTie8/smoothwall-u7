@@ -11,7 +11,7 @@ include ../Makefile.versions
 PACKAGE = $(FREESWAN_TYPE)
 VERSION = $(FREESWAN_VER)
 
-BASE_URL = http://www.openswan.org/download/
+BASE_URL = https://download.libreswan.org
 
 TARBALL = $(FREESWAN_TYPE)-$(VERSION)
 

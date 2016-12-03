@@ -34,10 +34,13 @@ while ((<presentConf>))
   $newLine = $_;
 
   # Adjust for the new kernel
-  $newLine =~ s/$oldkern/$newkern/g;
+  $newLine =~ s/vmlinuz-[^ ]+/vmlinuz-$newkern/g;
+  $newLine =~ s/initrd-[^ ]+\.gz/initrd-$newkern\.gz/g;
   print newConf $newLine;
 
   # Relabel for the old kernel
+  $_ =~ s/vmlinuz-[^ ]+/vmlinuz-$oldkern/g;
+  $_ =~ s/initrd-[^ ]+\.gz/initrd-$oldkern\.gz/g;
   $_ =~ s/using/old Linux ($oldkern) using/g;
   $_ =~ s/(Console|Hardware)\)/\1, old [$oldkern] kernel)/g;
   print oldConf;
@@ -51,4 +54,9 @@ print newConf "## Old Kernel\ntitle Select Old kernel [$oldkern]\nconfigfile /gr
 
 print oldConf "## Default Kernel\ntitle Select Default kernel [$newkern]\nconfigfile /grub/grub.conf\n";
 
+# And close
+close(newConf);
+close(oldConf);
+
 rename "/boot/grub/newkernel.conf", "/boot/grub/grub.conf";
+chmod 644, "/boot/grub/grub.conf";

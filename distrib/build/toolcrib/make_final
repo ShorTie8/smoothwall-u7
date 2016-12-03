@@ -45,7 +45,7 @@ fi
 cd /build
 export BUILD_PHASE="Final"
 
-# Should be temporary: ensure {,u}mount are not setuid in /tools.
+# Permanent: ensure {,u}mount are not setuid in /tools.
 /tools/bin/chmod u-s /tools/bin/{,u}mount
 
 # Be sure /proc is mounted
@@ -86,6 +86,7 @@ fi
 # Must be building all of the final stage
 #
   JOBS=$JOBS_MP
+  beginTIME=`date +%s`
 
   if [ -e crumbs/Final.compiled ]; then
     echo -e "\n    Final phase packages already compiled"
@@ -225,6 +226,7 @@ fi
       build grep
       build gzip
       build make
+      build module-init-tools
       build patch
       build procinfo-ng
       build procps-ng
@@ -255,7 +257,9 @@ fi
       build linux
       build linux-firmware
       build kernel-drivers
+      JOBS=$JOBS_UP
       build iptables
+      JOBS=$JOBS_MP
       build ipset
       build xtables-addons
       build ipbatch
@@ -271,7 +275,6 @@ fi
       echo -e "  Final group 5 packages (core)"
       build usbutils
       build pciutils
-      build bridge-utils
       build hdparm
       build hddtemp
       build iproute2
@@ -376,16 +379,21 @@ fi
       build qemu
       build ntop
       build iperf
+      build fping
       build apcupsd
       build setkerneltz
       build c_icap
       build c_icap_modules
       build squidclamav
       build usb-modeswitch
+      build zip
 
       touch crumbs/Final.grp6.compiled
     fi
 
     touch crumbs/Final.compiled
   fi
+  startTIME=`date +%s`-beginTIME
+  displayTIME=`perl -e "printf('%6d', $startTIME);"`
+  echo "    $displayTIME final build complete"
   echo

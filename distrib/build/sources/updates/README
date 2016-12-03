@@ -12,6 +12,14 @@ script that will tidy the distrib tree just before it is tarred up. Create
 these files as needed.
 
 
+Update Development Tools
+------------------------
+  - checklibs: this tool checks every shared lib needed by every program.
+    Note: it should also check shared libs needed by shared libs. It should
+    also report shared libs that are apparently not used by anything; these
+    shuold be deleted from the system.
+
+
 Update info file format
 -----------------------
   MD5:      The md5sum of the complete update tarball.
@@ -21,8 +29,12 @@ Update info file format
 
 Update build steps
 ------------------
+  - When releasing a service pack, add the update's release date to
+    .../coretree/tree/var/smoothwall/patches/installed. And don't
+    forget to update it if the update takes a long time to complete.
   - Add pkgs to build for the update to the update's makefile.
   - Add coretree files to coretree.list, one file per line, if any.
+  - NOTE: !!! If dhcpcd is included, be sure to include usr/etc/dhcpcd.conf. !!!
   - Create 'pkg'.list file to constrain which of an updated pkg's files
     are added to the update
   - Go to the main .../build/... directory

@@ -267,7 +267,9 @@ predownload:
 	  cd sources; \
 	  for I in `find -maxdepth 3 -mindepth 1 -type d | sort`; do \
 	    if [ "$$I" != "\./\.git" ]; then \
-	      if echo $$I | egrep "^./mtools/mtools-4.0.15/scripts" >/dev/null 2>&1; then \
+	      if echo $$I | egrep "^./nss/nss-[^/]*/nss" >/dev/null 2>&1; then \
+	        continue; \
+	      elif echo $$I | egrep "^./mtools/mtools-4.0.15/scripts" >/dev/null 2>&1; then \
 	        continue; \
 	      elif echo $$I | egrep "^./cdrtools" >/dev/null 2>&1; then \
 	        NW="GMAKE_NOWARN=true "; \
@@ -321,10 +323,10 @@ packageinfos.html:
 print-versions:
 	@cd sources; \
 	for I in */; do \
-	  pushd $$I >/dev/null 2>&1; make --no-print-directory print-version || echo "$$I||print-version failed||" ; popd >/dev/null 2>&1; \
-	done | (echo "<table>" ; while read INPUT ; do \
-	  echo "<tr><td>$${INPUT//|/</td><td>}</td></tr>"; \
-	done; echo "</table>") > ../crumbs/packageVersions.html
+	  echo -n "$$I " >&2; pushd $$I >/dev/null 2>&1; make --no-print-directory print-version || echo "$$I||print-version failed||" ; popd >/dev/null 2>&1; \
+	done | (echo "<html><body><table>" ; while read PKG VER BASE_URL ; do \
+	  echo "<tr><td style='text-align:right'>$${PKG}</td><td>$$VER</td><td>$$BASE_URL</td></tr>"; \
+	done | sort -f; echo "</table></body></html>") > ../crumbs/packageVersions.html
 
 # Prepare to rebuild the final stage
 reprep-final:

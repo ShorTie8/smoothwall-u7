@@ -9,7 +9,6 @@ BASE_URL = http://downloads.sourceforge.net/project/$(PACKAGE)/$(PACKAGE)/v$(VER
 
 COMPILE_DIR = $(DIR)-compile
 
-
 ifeq ($(BUILD_PHASE), Stage_3)
 
 CONFIG_OPTS += --prefix=$(TOOLS_DIR) --enable-verbose-makecmds
@@ -24,6 +23,8 @@ endif
 
 ifeq ($(BUILD_PHASE), Final)
 
+PKG_DIR=
+
 CONFIG_OPTS += --prefix=/usr           \
                --bindir=/bin           \
                --with-root-prefix=""   \
@@ -31,6 +32,7 @@ CONFIG_OPTS += --prefix=/usr           \
                --disable-libblkid      \
                --disable-libuuid       \
                --disable-uuidd         \
+	       --enable-verbose-makecmds \
                --disable-fsck
 
 

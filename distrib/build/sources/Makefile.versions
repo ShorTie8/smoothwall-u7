@@ -5,9 +5,9 @@
 # This code is distributed under the terms of the GPL v2.
 
 # The system's kernel.
-KERNEL_MAJOR = 3
-KERNEL_MMR = $(KERNEL_MAJOR).14
-KERNEL_VER = $(KERNEL_MMR).63
+KERNEL_MAJOR = 4
+KERNEL_MMR = $(KERNEL_MAJOR).9-rc7
+KERNEL_VER = $(KERNEL_MMR)
 
 # The kernel version headers needed to build klibc-2.6.18
 # Unrelated to the system's kernel

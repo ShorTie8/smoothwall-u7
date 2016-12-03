@@ -30,11 +30,6 @@
 
 #include "langs.h"
 
-/*
-#define TITLE "Smoothwall Express 3.1"
-   TITLE is now defined on the gcc command line.
- */
-
 #define STRING_SIZE 256
 
 #define ADDRESS 0

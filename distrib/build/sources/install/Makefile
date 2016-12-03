@@ -10,9 +10,6 @@ include ../Makefile.versions
 PACKAGE = install
 VERSION = 0.0
 
-#CFLAGS += -DTITLE='"Smoothwall $(PRODUCT_NAME) $(PRODUCT_VERSION)-$(REVISION)$(PRODUCT_EXTRA)-$(mARCH)"'
-#CXXFLAGS += -DTITLE='"Smoothwall $(PRODUCT_NAME) $(PRODUCT_VERSION)-$(REVISION)$(PRODUCT_EXTRA)-$(mARCH)"'
-
 compile:
 	@make -C $(COMPILE_DIR)
 

@@ -11,6 +11,8 @@ while read var value; do
   esac
 done </var/smoothwall/traffic/settings
 IFS=$OIFS
+displayVersion=`perl -e 'use lib "/usr/lib/smoothwall";use header qw( :standard ); print $displayVersion;'`
+displayVersion="Smoothwall${displayVersion/ /-}"
 
 if [ ! -z $UPLOAD_SPEED ]; then UPLOAD_SPEED="bitrate_up=$UPLOAD_SPEED"; fi
 if [ ! -z $DOWNLOAD_SPEED ]; then DOWNLOAD_SPEED="bitrate_down=$DOWNLOAD_SPEED"; fi
@@ -32,7 +34,7 @@ fi
 # Set model, UUID and Pres. URL
 UUID=`cat /etc/miniupnpd.uuid`
 PRES_URL="presentation_url=https://$GREEN_ADDRESS:441/cgi-bin/index.cgi"
-MODEL_NAME="model_name=$VERSION-$REVISION-$ARCH"
+MODEL_NAME="model_name=$displayVersion"
 
 # Get 'friendly' name
 FRIENDLY_NAME=friendly_name=`hostname`

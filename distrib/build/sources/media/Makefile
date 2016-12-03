@@ -9,6 +9,9 @@ include ../Makefile.versions
 include ../Makefile
 
 PACKAGE = media
+VERSION = N/A
+
+TAR_OPTIONS = 
 
 # Two dirs down, one cross each.
 ifeq ($(BUILD_OUT), crumbs/build-progress.out)
@@ -38,31 +41,33 @@ INST_PKGS = glibc libsmooth+setup libgcc freetype libpng libdnet \
 	    libnetfilter_acct libnetfilter_conntrack libnetfilter_cthelper \
 	    libnetfilter_cttimeout libnetfilter_log libnftnl \
 	    libcap fontconfig glib cairo libffi readline libpcap sqlite-autoconf \
-	    libosip2 libpcap pango zlib slang pixman libxml2 libusb-compat libusb \
-	    kmod gmp mpfr mpc popt yaml perl-mods libcap-ng rsync \
+	    libosip2 pango zlib slang pixman libxml2 libusb-compat libusb \
+	    libevent nspr nss unbound c_icap c_icap_modules \
+	    kmod gmp mpfr mpc popt yaml perl-mods rsync \
 	    newt binutils coreutils iana-etc mktemp file findutils gawk \
 	    ncurses vim less sed flex gettext inetutils iputils \
-	    whois perl bash bc bzip2 kbd e2fsprogs grep gzip \
+	    whois perl bash bc bzip2 kbd e2fsprogs grep gzip module-init-tools \
 	    procinfo-ng procps-ng psmisc shadow sysklogd logrotate sysvinit tar \
 	    util-linux joe wget iptables ipset ipbatch pciutils usbutils \
-	    linux$(KERNEL_TYPE) openssl openssh httpd smoothd squid freefont \
+	    linux openssl openssh httpd smoothd squid freefont \
 	    strace rrdtool cron tcpdump dnsmasq ntp openntpd hdparm hddtemp \
-	    iproute2 gd expat ethtool listtables inotify-tools bridge-utils \
+	    iproute2 gd expat ethtool listtables inotify-tools \
 	    beep2 pcre trafficstats iftop setuids ppp isdn4k-utils rp-pppoe \
 	    ibod dhcpcd eciadsl-synch_bin eciadsl-usermode dhcp snort \
-	    oinkmaster libreswan wireless_tools imspector diffutils clamav \
+	    oinkmaster openswan wireless_tools imspector diffutils clamav \
 	    p3scan siproxd which miniupnpd ez-ipupdate noip cdrtools \
-	    suricata smartmontools at dosfstools e2fsprogs grub linux-atm \
+	    suricata smartmontools at dosfstools grub linux-atm \
 	    mtools nano reiserfsprogs parted xtables-addons cpio dialog \
 	    $(UDEV) lm_sensors xz pcmciautils qemu sysfsutils db squidGuard \
-	    apcupsd cacert-bundle setkerneltz \
+	    apcupsd cacert-bundle setkerneltz fping \
 	    kernel-drivers \
 	    coretree $(ADV_PKGS) device-ids
 
 # INST_PKGS notes.
 # cacert-bundle should be installed after openssl.
-# kernel-driver *MUST* be installed after linux. Its drivers replace their
+# kernel-drivers *MUST* be installed after linux. Its drivers replace their
 #   counterparts in linux.
+# linux-backports *may* override drivers in kernel-drivers; keep an eye pealed.
 # 'coretree' *MUST* be third-last.
 # If the 'advanced' mechanism is added, ADV_PKGS must be second-last; they'll
 #   override what's in coretree.
@@ -72,7 +77,7 @@ INST_PKGS = glibc libsmooth+setup libgcc freetype libpng libdnet \
 DEV_PKGS = kernel-headers patch make autoconf automake bison dejagnu gcc \
 	   gdb tcl m4 neon git screen lynx groff man man-pages \
 	   klibc pkg-config sudo texinfo busybox \
-	   libtool nasm acpica
+	   libtool nasm acpica zip
 
 NOT_DRIVERS = drivers/video
 
@@ -109,7 +114,7 @@ endif
 	      fi; \
 	    fi; \
 	    echo -n "    $$I"; \
-	    tar -zxf $(TARGET_DIR)/smoothwall-$$I.tar.gz -C distrib-dev || (echo; exit 69); \
+	    TAR_OPTIONS= tar -zxf $(TARGET_DIR)/smoothwall-$$I.tar.gz -C distrib-dev || (echo; exit 69); \
 	    echo; \
 	  done; \
 	);
@@ -131,7 +136,7 @@ endif
 	      fi; \
 	    fi; \
 	    echo -n "    $$I"; \
-	    tar xf $(TARGET_DIR)/smoothwall-$$I.tar.gz -C distrib || (echo; exit 68); \
+	    TAR_OPTIONS= tar xf $(TARGET_DIR)/smoothwall-$$I.tar.gz -C distrib || (echo; exit 68); \
 	    echo; \
 	  done; \
 	);
@@ -223,12 +228,11 @@ endif
 	@echo -e "\nTidying ..."
 	@#rm -f distrib/etc/resolv.conf
 	@find distrib -name .gitignore -exec rm -f {} \;
-	@[ -f distrib/etc/ipsec.conf ] && mv distrib/etc/ipsec.conf distrib/etc/ipsec.conf-DIST
-	@ln -sf /var/smoothwall/vpn/ipsec.conf distrib/etc/ipsec.conf
+	@ln -s /var/smoothwall/vpn/ipsec.conf distrib/etc/ipsec.conf
 	@ln -sf /usr/bin/hostname distrib/bin/hostname
 	@cd distrib; chown -R root:root usr/share/ntop usr/etc/ntop
 	@cd distrib/etc; mkdir -p apcupsd/scripts && chown root:root apcupsd/scripts && chmod 755 apcupsd/scripts
-	@cd distrib/etc; chmod -R g-w,o-w logrotate*
+	@cd distrib/etc; chmod 644 logrotate.{base,conf,d/*}
 	@cd distrib-doc; chown -R root:root .
 	@cd distrib/bin; ln -s /usr/bin/gzip gzip
 	
